@@ -3,7 +3,8 @@ import WorkImage from "./WorkImage";
 import MoreProjects from "./MoreProjects";
 import { MdArrowForward } from "react-icons/md";
 
-const projects = [
+type Project = { name: string; category: string; description: string; tools: string; image: string; github?: string; link?: string; };
+const projects: Project[] = [
   {
     name: "Skin Disease Classification System",
     category: "AI-Powered Healthcare Application",

@@ -12,14 +12,6 @@ import {
 } from "@react-three/rapier";
 import "./styles/TechStack.css";
 
-const techCategories = [
-  { title: "Languages", skills: ["Python", "Java", "SQL"] },
-  { title: "Frontend", skills: ["React.js", "HTML", "CSS", "JavaScript"] },
-  { title: "Backend", skills: ["Flask", "Django"] },
-  { title: "AI & Machine Learning", skills: ["TensorFlow", "Scikit-Learn", "Pandas", "NumPy"] },
-  { title: "Database", skills: ["MySQL", "SQLite"] },
-  { title: "Tools", skills: ["Git", "GitHub", "VS Code", "Power BI"] },
-];
 
 const skillsList = [
   "Python", "Java", "SQL", "React.js", "HTML", "CSS", "JavaScript",
