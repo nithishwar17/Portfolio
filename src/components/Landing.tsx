@@ -9,21 +9,25 @@ const Landing = ({ children }: PropsWithChildren) => {
           <div className="landing-intro">
             <h2>Hello! I'm</h2>
             <h1>
-              MONCY
+              NITHISHWAR
               <br />
-              <span>YOHANNAN</span>
+              <span>T</span>
             </h1>
+            <div className="landing-profile-pic">
+              <div className="landing-img-glow"></div>
+              <img src="/Profile.png" alt="Nithishwar T" />
+            </div>
           </div>
-          <div className="landing-info">
-            <h3>A Creative</h3>
-            <h2 className="landing-info-h2">
-              <div className="landing-h2-1">Designer</div>
-              <div className="landing-h2-2">Developer</div>
-            </h2>
-            <h2>
-              <div className="landing-h2-info">Developer</div>
-              <div className="landing-h2-info-1">Designer</div>
-            </h2>
+          <div className="landing-info" style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            <h3 className="landing-subtitle" style={{ color: "var(--accentColor, #c481ff)", fontWeight: 500 }}>
+              Full Stack Developer
+            </h3>
+            <h3 className="landing-subtitle" style={{ color: "#fff", fontWeight: 300 }}>
+              AI & Machine Learning Enthusiast
+            </h3>
+            <h3 className="landing-subtitle" style={{ color: "#adacac", fontWeight: 200, fontSize: "16px" }}>
+              Information Technology Student
+            </h3>
           </div>
         </div>
         {children}

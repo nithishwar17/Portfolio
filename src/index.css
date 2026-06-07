@@ -91,13 +91,13 @@ body {
   flex-wrap: nowrap;
 }
 
+/* Removed old techstack styles */
 .techstack {
   width: 100%;
   position: relative;
-  height: var(--vh);
+  height: 100vh;
   margin: auto;
   margin-top: 50px;
-  margin-bottom: -100px;
 }
 
 .techstack h2 {
@@ -111,13 +111,11 @@ body {
   text-transform: uppercase;
 }
 
+.tech-canvas {
+  transform: translateY(-120px) scale(0.8);
+}
 @media screen and (min-width: 768px) {
   body {
     --cWidth: 94%;
-  }
-}
-@media screen and (max-width: 900px) {
-  .techstack h2 {
-    font-size: 40px;
   }
 }

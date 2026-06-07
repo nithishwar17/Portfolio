@@ -10,25 +10,45 @@ import {
   CylinderCollider,
   RapierRigidBody,
 } from "@react-three/rapier";
+import "./styles/TechStack.css";
 
-const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
+const techCategories = [
+  { title: "Languages", skills: ["Python", "Java", "SQL"] },
+  { title: "Frontend", skills: ["React.js", "HTML", "CSS", "JavaScript"] },
+  { title: "Backend", skills: ["Flask", "Django"] },
+  { title: "AI & Machine Learning", skills: ["TensorFlow", "Scikit-Learn", "Pandas", "NumPy"] },
+  { title: "Database", skills: ["MySQL", "SQLite"] },
+  { title: "Tools", skills: ["Git", "GitHub", "VS Code", "Power BI"] },
 ];
-const textures = imageUrls.map((url) => textureLoader.load(url));
+
+const skillsList = [
+  "Python", "Java", "SQL", "React.js", "HTML", "CSS", "JavaScript",
+  "Flask", "Django", "TensorFlow", "Scikit-Learn", "Pandas", "NumPy",
+  "MySQL", "SQLite", "Git", "GitHub", "VS Code", "Power BI"
+];
+
+// Dynamically generate a texture with the skill text wrapped around it
+const createTextTexture = (text: string) => {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 512;
+  const ctx = canvas.getContext("2d");
+  if (ctx) {
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, 1024, 512);
+    ctx.fillStyle = "#000000";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = "bold 100px sans-serif";
+    ctx.fillText(text, 256, 256);
+    ctx.fillText(text, 768, 256);
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+};
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
-
-const spheres = [...Array(30)].map(() => ({
-  scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
-}));
 
 type SphereProps = {
   vec?: THREE.Vector3;
@@ -151,64 +171,77 @@ const TechStack = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const materials = useMemo(() => {
-    return textures.map(
-      (texture) =>
-        new THREE.MeshPhysicalMaterial({
-          map: texture,
-          emissive: "#ffffff",
-          emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
-        })
-    );
+    return skillsList.map((skill) => {
+      const texture = createTextTexture(skill);
+      return new THREE.MeshPhysicalMaterial({
+        map: texture,
+        emissive: "#ffffff",
+        emissiveMap: texture,
+        emissiveIntensity: 0.4,
+        metalness: 0.2,
+        roughness: 0.8,
+        clearcoat: 0.1,
+      });
+    });
+  }, []);
+
+  const spheres = useMemo(() => {
+    return skillsList.map(() => ({
+      scale: [1.3, 1.4, 1.5, 1.6][Math.floor(Math.random() * 4)],
+    }));
   }, []);
 
   return (
-    <div className="techstack">
+    <div className="techstack" id="techstack">
       <h2> My Techstack</h2>
 
-      <Canvas
-        shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
-        className="tech-canvas"
-      >
-        <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
-        <Physics gravity={[0, 0, 0]}>
-          <Pointer isActive={isActive} />
-          {spheres.map((props, i) => (
-            <SphereGeo
-              key={i}
-              {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
-              isActive={isActive}
-            />
-          ))}
-        </Physics>
-        <Environment
-          files="/models/char_enviorment.hdr"
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
-        <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
-        </EffectComposer>
-      </Canvas>
+      <div style={{ height: "100vh", width: "100%", position: "relative" }}>
+        <Canvas
+          shadows
+          dpr={[1, 1.5]}
+          frameloop={isActive ? "always" : "never"}
+          gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
+          camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+          onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
+          className="tech-canvas"
+        >
+          <ambientLight intensity={1} />
+          <spotLight
+            position={[20, 20, 25]}
+            penumbra={1}
+            angle={0.2}
+            color="white"
+            castShadow
+            shadow-mapSize={[512, 512]}
+          />
+          <directionalLight position={[0, 5, -4]} intensity={2} />
+          <Physics gravity={[0, 0, 0]}>
+            <Pointer isActive={isActive} />
+            {spheres.map((props, i) => (
+              <SphereGeo
+                key={i}
+                {...props}
+                material={materials[i]}
+                isActive={isActive}
+              />
+            ))}
+          </Physics>
+          <Environment
+            files="/models/char_enviorment.hdr"
+            environmentIntensity={0.5}
+            environmentRotation={[0, 4, 2]}
+          />
+          <EffectComposer enableNormalPass={false}>
+            <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
+          </EffectComposer>
+        </Canvas>
+      </div>
+
     </div>
   );
+
 };
 
 export default TechStack;

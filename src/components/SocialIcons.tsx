@@ -1,8 +1,8 @@
 import {
   FaGithub,
-  FaInstagram,
   FaLinkedinIn,
-  FaXTwitter,
+  FaTelegram,
+  FaMedium,
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
@@ -60,27 +60,27 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a href="https://github.com" target="_blank">
+          <a href="https://github.com/nithishwar17/" target="_blank" rel="noreferrer">
             <FaGithub />
           </a>
         </span>
         <span>
-          <a href="https://www.linkedin.com" target="_blank">
+          <a href="https://www.linkedin.com/in/nithishwar-t-b153b2299" target="_blank" rel="noreferrer">
             <FaLinkedinIn />
           </a>
         </span>
         <span>
-          <a href="https://x.com" target="_blank">
-            <FaXTwitter />
+          <a href="https://t.me/Nithish_2448" target="_blank" rel="noreferrer">
+            <FaTelegram />
           </a>
         </span>
         <span>
-          <a href="https://www.instagram.com" target="_blank">
-            <FaInstagram />
+          <a href="https://medium.com/@thirunithishwar" target="_blank" rel="noreferrer">
+            <FaMedium />
           </a>
         </span>
       </div>
-      <a className="resume-button" href="#">
+      <a className="resume-button" href="https://drive.google.com/file/d/1qyHvHkloj4CHsyCqPtX_VK_sVG6SHAjg/view?usp=drivesdk" target="_blank" rel="noreferrer">
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />

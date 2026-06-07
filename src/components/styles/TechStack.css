@@ -1,0 +1,90 @@
+.techstack-section {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  min-height: 50vh;
+}
+
+.techstack-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.techstack-section h2 {
+  font-size: 50px;
+  font-weight: 500;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.techstack-section h2 span {
+  color: var(--accentColor);
+}
+
+.techstack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+
+.techstack-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.techstack-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(194, 164, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.techstack-card h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.techstack-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-pill {
+  font-size: 12px;
+  padding: 6px 14px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: #ccc;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.techstack-card:hover .skill-pill {
+  border-color: rgba(194, 164, 255, 0.3);
+  color: #fff;
+  background-color: rgba(194, 164, 255, 0.05);
+}
+
+@media only screen and (max-width: 1024px) {
+  .techstack-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .techstack-grid {
+    grid-template-columns: 1fr;
+  }
+  .techstack-section h2 {
+    font-size: 40px;
+  }
+}
